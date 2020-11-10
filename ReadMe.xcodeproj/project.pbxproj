@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB18FD5B255ACEFE002DABCE /* NewBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB18FD5A255ACEFE002DABCE /* NewBookViewController.swift */; };
 		FB86E0DD254F38B60002A125 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB86E0DC254F38B60002A125 /* AppDelegate.swift */; };
 		FB86E0DF254F38B60002A125 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB86E0DE254F38B60002A125 /* SceneDelegate.swift */; };
 		FB86E0E1254F38B60002A125 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB86E0E0254F38B60002A125 /* LibraryViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FB18FD5A255ACEFE002DABCE /* NewBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookViewController.swift; sourceTree = "<group>"; };
 		FB86E0D9254F38B60002A125 /* ReadMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB86E0DC254F38B60002A125 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB86E0DE254F38B60002A125 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				FB86E0DE254F38B60002A125 /* SceneDelegate.swift */,
 				FB86E0E0254F38B60002A125 /* LibraryViewController.swift */,
 				FB86E0E2254F38B60002A125 /* Main.storyboard */,
+				FB18FD5A255ACEFE002DABCE /* NewBookViewController.swift */,
 				FB86E0F42550464A0002A125 /* DetailViewController.swift */,
 				FB86E0F0254F3B140002A125 /* Book.swift */,
 				FB86E0E5254F38BC0002A125 /* Assets.xcassets */,
@@ -152,6 +155,7 @@
 			files = (
 				FB86E0F1254F3B140002A125 /* Book.swift in Sources */,
 				FB86E0E1254F38B60002A125 /* LibraryViewController.swift in Sources */,
+				FB18FD5B255ACEFE002DABCE /* NewBookViewController.swift in Sources */,
 				FB86E0F3254F42570002A125 /* Library.swift in Sources */,
 				FB86E0F72555818D0002A125 /* BoockCell.swift in Sources */,
 				FB86E0F52550464A0002A125 /* DetailViewController.swift in Sources */,
