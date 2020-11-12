@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FB18FD5B255ACEFE002DABCE /* NewBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB18FD5A255ACEFE002DABCE /* NewBookViewController.swift */; };
+		FB52EA16255C3D1900BD5C0F /* LibraryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB52EA15255C3D1800BD5C0F /* LibraryHeaderView.xib */; };
 		FB86E0DD254F38B60002A125 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB86E0DC254F38B60002A125 /* AppDelegate.swift */; };
 		FB86E0DF254F38B60002A125 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB86E0DE254F38B60002A125 /* SceneDelegate.swift */; };
 		FB86E0E1254F38B60002A125 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB86E0E0254F38B60002A125 /* LibraryViewController.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		FB18FD5A255ACEFE002DABCE /* NewBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookViewController.swift; sourceTree = "<group>"; };
+		FB52EA15255C3D1800BD5C0F /* LibraryHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryHeaderView.xib; sourceTree = "<group>"; };
 		FB86E0D9254F38B60002A125 /* ReadMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB86E0DC254F38B60002A125 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB86E0DE254F38B60002A125 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				FB86E0DC254F38B60002A125 /* AppDelegate.swift */,
 				FB86E0DE254F38B60002A125 /* SceneDelegate.swift */,
 				FB86E0E0254F38B60002A125 /* LibraryViewController.swift */,
+				FB52EA15255C3D1800BD5C0F /* LibraryHeaderView.xib */,
 				FB86E0E2254F38B60002A125 /* Main.storyboard */,
 				FB18FD5A255ACEFE002DABCE /* NewBookViewController.swift */,
 				FB86E0F42550464A0002A125 /* DetailViewController.swift */,
@@ -143,6 +146,7 @@
 				FB86E0E9254F38BC0002A125 /* LaunchScreen.storyboard in Resources */,
 				FB86E0E6254F38BC0002A125 /* Assets.xcassets in Resources */,
 				FB86E0E4254F38B60002A125 /* Main.storyboard in Resources */,
+				FB52EA16255C3D1900BD5C0F /* LibraryHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
