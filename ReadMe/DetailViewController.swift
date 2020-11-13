@@ -25,7 +25,7 @@ class DetailViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        imageView.image = book.image
+        imageView.image = book.image ?? LibrarySymbol.letterSquare(letter: book.title.first).image
         imageView.layer.cornerRadius = 16
         titleLabel.text = book.title
         authourLabel.text = book.author
