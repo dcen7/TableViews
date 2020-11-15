@@ -9,12 +9,25 @@
 import UIKit
 
 class DetailViewController: UITableViewController {
-    let book: Book
+    var book: Book
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var authourLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var reviewTextView: UITextView!
+    
+    @IBOutlet var readMeButton: UIButton!
+    
+    @IBAction func toggleReadMe() {
+        book.readMe.toggle()
+        let image = book.readMe ? LibrarySymbol.bookmarkFill.image : LibrarySymbol.bookmark.image
+        readMeButton.setImage(image, for: .normal)
+    }
+    
+    @IBAction func saveChanges() {
+        Library.update(book: book)
+        navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func updateImage() {
         let imagePicker = UIImagePickerController()
@@ -33,6 +46,8 @@ class DetailViewController: UITableViewController {
         if let review = book.review {
             reviewTextView.text = review
         }
+        let image = book.readMe ? LibrarySymbol.bookmarkFill.image : LibrarySymbol.bookmark.image
+        readMeButton.setImage(image, for: .normal)
         
         reviewTextView.addDoneButton()
     }
@@ -53,13 +68,14 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
         
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
         imageView.image = selectedImage
-        Library.saveImage(selectedImage, forBook: book)
+        book.image = selectedImage
         dismiss(animated: true)
     }
 }
 
 extension DetailViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
+        book.review = textView.text
         textView.resignFirstResponder()
     }
 }

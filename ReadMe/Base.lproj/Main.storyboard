@@ -163,6 +163,9 @@
                                                             <state key="normal" image="bookmark.fill" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="48"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="toggleReadMe" destination="G4M-cj-Plj" eventType="touchUpInside" id="YDC-U9-bpG"/>
+                                                            </connections>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hWY-f3-boy">
                                                             <rect key="frame" x="42.5" y="0.0" width="331.5" height="35"/>
@@ -276,7 +279,13 @@
                             <outlet property="delegate" destination="G4M-cj-Plj" id="NTl-0v-Usx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="fQ1-R7-t39"/>
+                    <navigationItem key="navigationItem" id="fQ1-R7-t39">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Kir-00-OhJ">
+                            <connections>
+                                <action selector="saveChanges" destination="G4M-cj-Plj" id="5mL-4v-Mey"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authourLabel" destination="PSf-O1-HOS" id="7N8-J3-YdF"/>
                         <outlet property="imageView" destination="c4h-Po-KAf" id="dhF-HL-fDe"/>
@@ -412,7 +421,18 @@
                             <outlet property="delegate" destination="FDe-jh-Vn3" id="xHb-1u-NHj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="FZT-Y1-RoD"/>
+                    <navigationItem key="navigationItem" id="A9w-wd-4RF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="SNQ-qV-GCW">
+                            <connections>
+                                <action selector="cancel" destination="FDe-jh-Vn3" id="Hff-bz-rcy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jH7-uO-VrH">
+                            <connections>
+                                <action selector="saveNewBook" destination="FDe-jh-Vn3" id="R16-gn-xxZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authorTextField" destination="saq-0Q-NbC" id="7hY-Dr-m6t"/>
                         <outlet property="bookImageView" destination="b88-9B-hQX" id="489-cJ-4gp"/>
