@@ -13,6 +13,11 @@ class LibraryHeaderView: UITableViewHeaderFooterView {
     @IBOutlet var titleLabel: UILabel!
 }
 
+enum SortStyle {
+    case title
+    case author
+    case readMe
+}
 enum Section: String, CaseIterable {
     case addNew
     case readMe = "Read Me!"
@@ -23,6 +28,28 @@ class LibraryViewController: UITableViewController {
    
     var dataSource: LibraryDataSource!
 
+    @IBOutlet var sortButtons: [UIBarButtonItem]!
+    
+    @IBAction func sortByTitle(_ sender: UIBarButtonItem) {
+        dataSource.update(sortStyle: .title)
+        updateTintColors(tappedButton: sender)
+    }
+    @IBAction func sortByAuthor(_ sender: UIBarButtonItem) {
+        dataSource.update(sortStyle: .author)
+        updateTintColors(tappedButton: sender)
+    }
+    
+    @IBAction func sortByReadMe(_ sender: UIBarButtonItem) {
+        dataSource.update(sortStyle: .readMe)
+        updateTintColors(tappedButton: sender)
+    }
+    
+    func updateTintColors(tappedButton: UIBarButtonItem) {
+        sortButtons.forEach { button in
+            button.tintColor = button == tappedButton ? button.customView?.tintColor : .secondaryLabel
+        }
+    }
+    
     @IBSegueAction func showDetailView(_ coder: NSCoder) -> DetailViewController? {
         guard let indexPath = tableView.indexPathForSelectedRow,
         let book = dataSource.itemIdentifier(for: indexPath)
@@ -37,12 +64,12 @@ class LibraryViewController: UITableViewController {
        
         tableView.register(UINib(nibName: "\(LibraryHeaderView.self)", bundle: nil), forHeaderFooterViewReuseIdentifier: LibraryHeaderView.reuseIdentifier)
         configureDataSource()
-        dataSource.update()
+        dataSource.update(sortStyle: .readMe)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        dataSource.update()
+        dataSource.update(sortStyle: dataSource.currentSortStyle)
     }
     
     //MARK:- Delegate
@@ -101,15 +128,29 @@ class LibraryViewController: UITableViewController {
 }
 
 class LibraryDataSource: UITableViewDiffableDataSource<Section, Book> {
-    func update() {
+    var currentSortStyle: SortStyle = .title
+    
+    func update(sortStyle: SortStyle, animatingDifferences: Bool = true) {
+        currentSortStyle = sortStyle
+        
         var newSnapshot = NSDiffableDataSourceSnapshot<Section, Book>()
         newSnapshot.appendSections(Section.allCases)
         let booksByReadMe: [Bool: [Book]] = Dictionary(grouping: Library.books, by: \.readMe)
         for (readMe, books) in booksByReadMe {
-            newSnapshot.appendItems(books, toSection: readMe ? .readMe : .finished)
+            var sortedBooks: [Book]
+            switch sortStyle {
+            case .title:
+                sortedBooks = books.sorted { $0.title.localizedCaseInsensitiveCompare($1.title) == .orderedAscending }
+            case .author:
+                sortedBooks = books.sorted { $0.author.localizedCaseInsensitiveCompare($1.author) == .orderedAscending }
+            case .readMe:
+                sortedBooks = books
+            }
+            
+            newSnapshot.appendItems(sortedBooks, toSection: readMe ? .readMe : .finished)
         }
         newSnapshot.appendItems([Book.mockBook], toSection: .addNew)
-        apply(newSnapshot, animatingDifferences: true)
+        apply(newSnapshot, animatingDifferences: animatingDifferences)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -120,8 +161,32 @@ class LibraryDataSource: UITableViewDiffableDataSource<Section, Book> {
         if editingStyle == .delete {
             guard let book = self.itemIdentifier(for: indexPath) else { return }
             Library.delete(book: book)
-            update()
+            update(sortStyle: currentSortStyle)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section != snapshot().indexOfSection(.readMe) && currentSortStyle == .readMe {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard
+            sourceIndexPath != destinationIndexPath,
+            sourceIndexPath.section == destinationIndexPath.section,
+            let bookToMove = itemIdentifier(for: sourceIndexPath),
+            let bookAtDestination = itemIdentifier(for: destinationIndexPath)
+        else {
+            apply(snapshot(), animatingDifferences: false)
+            return
+        }
+        
+        Library.reorderBooks(bookToMove: bookToMove, bookAtDestination: bookAtDestination)
+        update(sortStyle: currentSortStyle, animatingDifferences: false)
+            
     }
 }
 
